@@ -1,0 +1,53 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.7.0'
+    id 'java'
+}
+
+group 'ru.minotaur.crewhee'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:kotlin.io.path"
+    testImplementation(platform("org.junit:junit-bom:5.8.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+sourceSets {
+    main {
+        kotlin.srcDirs = ['src']
+    }
+
+    test {
+        kotlin.srcDirs = ['test']
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+//
+//kotlin {
+//    /* Targets configuration omitted.
+//    *  To find out how to configure the targets, please follow the link:
+//    *  https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#setting-up-targets */
+//
+//    sourceSets {
+//        commonMain {
+//            dependencies {
+//                implementation kotlin('stdlib-common')
+//            }
+//        }
+//        commonTest {
+//            dependencies {
+//                implementation kotlin('test-common')
+//                implementation kotlin('test-annotations-common')
+//            }
+//        }
+//    }
+//}
+
