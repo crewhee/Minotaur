@@ -1,0 +1,48 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.7.0'
+    id 'java'
+}
+
+group 'ru.minotaur.crewhee'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:kotlin.io.path"
+    testImplementation(platform("org.junit:junit-bom:5.8.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+sourceSets {
+    main {
+        kotlin.srcDirs = ['src']
+    }
+    test {
+        kotlin.srcDirs = ['test']
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Uberjar',
+                'Implementation-Version': archiveVersion,
+                'Main-Class': 'ru.minotaur.crewhee.game.GameStarterKt'
+    }
+    archivesBaseName = "uber-${project.name}"
+    from {
+        configurations.compileClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    with jar
+}
