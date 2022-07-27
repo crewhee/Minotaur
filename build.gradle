@@ -37,7 +37,7 @@ task fatJar(type: Jar) {
                 'Implementation-Version': archiveVersion,
                 'Main-Class': 'ru.minotaur.crewhee.game.GameStarterKt'
     }
-    archivesBaseName = "uber-${project.name}"
+    archivesBaseName = "Minotaur"
     from {
         configurations.compileClasspath.collect {
             it.isDirectory() ? it : zipTree(it)
