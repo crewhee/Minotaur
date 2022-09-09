@@ -1,0 +1,1 @@
+gradlew.bat fatJar > nul && java -jar build/libs/Minotaur-1.0-SNAPSHOT.jar
